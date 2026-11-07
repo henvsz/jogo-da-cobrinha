@@ -1,0 +1,89 @@
+:root {
+  --bg: #0b1020;
+  --panel: #121a33;
+  --line: #1c2750;
+  --text: #e6eaf8;
+  --muted: #8d97b8;
+  --blue: #3b82f6;
+  --violet: #7c3aed;
+  --food: #34d399;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: radial-gradient(circle at 50% 0%, #1b2457 0%, var(--bg) 55%);
+  color: var(--text);
+  font-family: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+
+body { display: flex; justify-content: center; padding: 16px; touch-action: manipulation; }
+
+.game { width: min(100%, 440px); display: flex; flex-direction: column; gap: 14px; }
+
+.bar { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+h1 { margin: 0; font-size: 1.4rem; letter-spacing: -0.02em; }
+.scores { display: flex; gap: 16px; font-size: 0.85rem; color: var(--muted); }
+.scores strong { color: var(--text); font-size: 1.05rem; margin-left: 4px; }
+
+.board {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--panel);
+  box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.25), 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+canvas { display: block; width: 100%; height: auto; aspect-ratio: 1; touch-action: none; }
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  padding: 24px;
+  background: rgba(11, 16, 32, 0.82);
+}
+.overlay.hidden { display: none; }
+.title { margin: 0; font-size: 1.3rem; font-weight: 700; }
+.hint { margin: 0 0 10px; color: var(--muted); font-size: 0.85rem; }
+
+button {
+  font: inherit;
+  color: var(--text);
+  cursor: pointer;
+}
+#startBtn {
+  padding: 12px 28px;
+  border: 0;
+  border-radius: 10px;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--blue), var(--violet));
+}
+#startBtn:hover { filter: brightness(1.12); }
+
+.pad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.pad button {
+  padding: 14px 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  font-size: 1.1rem;
+}
+.pad button:active { background: var(--line); }
+
+.foot { margin: 0; text-align: center; color: var(--muted); font-size: 0.8rem; }
+
+button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+@media (hover: hover) and (min-width: 700px) { .pad { display: none; } }
